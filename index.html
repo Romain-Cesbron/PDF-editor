@@ -5,13 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PDF Editor</title>
   <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- Sticky Top Bar with Buttons -->
   <div class="top-bar">
     <input type="file" id="pdfUpload" />
     <button id="addTextBtn">Add Text Box</button>
+    <label for="fontSize">Font Size:</label>
+    <select id="fontSize">
+      <option value="10">10</option>
+      <option value="12" selected>12</option>
+      <option value="14">14</option>
+      <option value="16">16</option>
+      <option value="18">18</option>
+      <option value="20">20</option>
+      <option value="24">24</option>
+      <option value="30">30</option>
+      <option value="36">36</option>
+    </select>
     <button id="downloadBtn">Download Edited PDF</button>
   </div>
   

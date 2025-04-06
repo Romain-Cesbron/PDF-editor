@@ -3,6 +3,7 @@ let scale = 1.5;
 let pdfContainer = document.getElementById('pdfContainer');
 let textboxes = [];
 let addTextMode = false;
+let currentFontSize = 12; // Default font size
 
 // Load PDF
 document.getElementById('pdfUpload').addEventListener('change', async (e) => {
@@ -64,7 +65,7 @@ pdfContainer.addEventListener('click', (e) => {
   textbox.innerText = 'Text';
   textbox.style.left = `${x}px`;
   textbox.style.top = `${y}px`;
-  textbox.style.fontSize = '12px'; // match PDF font size
+  textbox.style.fontSize = `${currentFontSize}px`; // Apply selected font size
 
   pageDiv.appendChild(textbox);
 
@@ -99,6 +100,35 @@ function makeDraggable(element) {
   });
 }
 
+// Update font size when user selects a new size
+document.getElementById('fontSize').addEventListener('change', (e) => {
+  currentFontSize = parseInt(e.target.value);
+
+  // Update font size for the selected textbox
+  const selectedTextbox = document.querySelector('.selected-textbox');
+  if (selectedTextbox) {
+    selectedTextbox.style.fontSize = `${currentFontSize}px`;
+  }
+});
+
+// Select a textbox and update the font size dropdown
+pdfContainer.addEventListener('click', (e) => {
+  if (e.target.classList.contains('textbox')) {
+    const selectedTextbox = e.target;
+
+    // Add or remove the 'selected-textbox' class
+    document.querySelectorAll('.textbox').forEach((textbox) => {
+      textbox.classList.remove('selected-textbox');
+    });
+
+    selectedTextbox.classList.add('selected-textbox');
+
+    // Update font size dropdown
+    const fontSize = parseInt(getComputedStyle(selectedTextbox).fontSize);
+    document.getElementById('fontSize').value = fontSize;
+  }
+});
+
 // Download Edited PDF
 document.getElementById('downloadBtn').addEventListener('click', async () => {
   if (!pdfDoc) return;
@@ -119,23 +149,17 @@ document.getElementById('downloadBtn').addEventListener('click', async () => {
     const xPercent = parseFloat(div.style.left) / pageRect.width;
     const yPercent = parseFloat(div.style.top) / pageRect.height;
 
-    // Get the font size from the text box in pixels
-    const fontSizePx = parseFloat(getComputedStyle(div).fontSize);
-
-    // Convert the font size from pixels to PDF points (PDF uses points)
-    const fontSizePoints = fontSizePx * (72 / 96); // Conversion from pixels (96 DPI) to points (72 DPI)
-
+    const fontSize = parseFloat(getComputedStyle(div).fontSize);
     const text = div.innerText || 'Text';
 
     const x = xPercent * width;
-    const y = height - (yPercent * height) - fontSizePoints;
+    const y = height - (yPercent * height) - fontSize;
 
-    // Use Helvetica as the font
     page.drawText(text, {
       x,
       y,
-      size: fontSizePoints,
-      font: await pdfDocLib.embedFont(PDFLib.StandardFonts.Helvetica), // Embed font if needed
+      size: fontSize,
+      font: await pdfDocLib.embedFont(PDFLib.StandardFonts.Helvetica),
     });
   }
 

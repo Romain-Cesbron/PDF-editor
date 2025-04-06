@@ -54,7 +54,7 @@ canvas {
   min-width: 50px;
   min-height: 20px;
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif; /* Use Roboto font */
 }
 
 /* Optional: Button styles */
