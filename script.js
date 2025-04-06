@@ -119,16 +119,23 @@ document.getElementById('downloadBtn').addEventListener('click', async () => {
     const xPercent = parseFloat(div.style.left) / pageRect.width;
     const yPercent = parseFloat(div.style.top) / pageRect.height;
 
-    const fontSize = parseFloat(getComputedStyle(div).fontSize);
+    // Get the font size from the text box in pixels
+    const fontSizePx = parseFloat(getComputedStyle(div).fontSize);
+
+    // Convert the font size from pixels to PDF points (PDF uses points)
+    const fontSizePoints = fontSizePx * (72 / 96); // Conversion from pixels (96 DPI) to points (72 DPI)
+
     const text = div.innerText || 'Text';
 
     const x = xPercent * width;
-    const y = height - (yPercent * height) - fontSize;
+    const y = height - (yPercent * height) - fontSizePoints;
 
+    // Use Helvetica as the font
     page.drawText(text, {
       x,
       y,
-      size: fontSize,
+      size: fontSizePoints,
+      font: await pdfDocLib.embedFont(PDFLib.StandardFonts.Helvetica), // Embed font if needed
     });
   }
 
