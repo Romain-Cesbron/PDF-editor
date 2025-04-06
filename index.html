@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Editor</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Sticky Top Bar with Buttons -->
+  <div class="top-bar">
+    <input type="file" id="pdfUpload" />
+    <button id="addTextBtn">Add Text Box</button>
+    <button id="downloadBtn">Download Edited PDF</button>
+  </div>
+  
+  <!-- PDF Container -->
+  <div id="pdfContainer"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+  <script src="https://unpkg.com/pdfjs-dist@2.10.377/build/pdf.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
