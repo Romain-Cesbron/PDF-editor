@@ -1,52 +1,99 @@
-/* Sticky Top Bar */
+/* General Styling */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
 .top-bar {
   position: sticky;
   top: 0;
-  background-color: #f5f5f5;
-  padding: 10px;
+  background-color: #4A90E2;
+  padding: 15px 30px;
   display: flex;
-  gap: 10px;
-  border-bottom: 1px solid #ccc;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 2px solid #3c7bbf;
   z-index: 10;
 }
 
 .top-bar label,
-.top-bar select {
+.top-bar select,
+.top-bar button {
   font-size: 14px;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 15px;
+  cursor: pointer;
+}
+
+.top-bar label {
+  cursor: pointer;
+}
+
+.top-bar select {
+  background-color: #ffffff;
+  color: #333;
+  border: 1px solid #3c7bbf;
+  border-radius: 4px;
+}
+
+.top-bar select:hover,
+.top-bar button:hover {
+  background-color: #357ab7;
+}
+
+.upload-btn {
+  background-color: #ffa500;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: white;
+  cursor: pointer;
+}
+
+.upload-btn:hover {
+  background-color: #e68700;
 }
 
 /* PDF container and page setup */
 #pdfContainer {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0;
-  margin: 0;
+  padding: 20px;
+  margin-top: 30px;
 }
 
-/* Page style, zero padding/margin */
 .pdf-page {
   position: relative;
   margin-bottom: 20px;
   padding: 0;
   border: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  border-radius: 8px;
 }
 
-/* Canvas consistency */
 canvas {
   display: block;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  border-radius: 8px;
 }
 
 /* Textbox styles */
 .textbox {
   position: absolute;
-  background-color: rgba(255, 255, 255, 0.7);
-  border: 1px solid #aaa;
-  padding: 4px 8px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 2px solid #4A90E2;
+  border-radius: 4px;
+  padding: 6px;
   cursor: move;
   font-size: 12px;
   outline: none;
@@ -59,15 +106,27 @@ canvas {
 
 /* Optional: Button styles */
 button {
-  padding: 6px 12px;
+  padding: 8px 16px;
   font-size: 14px;
   border: none;
-  background-color: #007bff;
+  background-color: #50e3c2;
   color: white;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #4db8a7;
+}
+
+/* Font Size Selector Container */
+.font-size-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.font-size-container label {
+  color: white;
+  font-size: 14px;
 }
